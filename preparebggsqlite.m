@@ -15,7 +15,7 @@ pwd='';
 driver='org.sqlite.JDBC';
 % you need to change correct url for your data this assumes that the file
 % is in the root of D-drive
-URL='jdbc:sqlite:D:\database.sqlite';
+URL='jdbc:sqlite:C:\Users\petra\OneDrive\Documents\Opiskelu\Kurssit\Datamining\Project\database.sqlite\database.sqlite';
 
 conn=database(dbtype,username,pwd,driver,URL);
 
