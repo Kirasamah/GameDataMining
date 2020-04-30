@@ -26,7 +26,6 @@ categories = replace(categories,{'Mythology', 'Religious'},'Myths and Religions'
 categories = replace(categories,{'City Building', 'Territory Building'},'Building');
 categories = replace(categories,{'Expansion for Base-game', 'Fan Expansion', 'Game System', 'null'},'');
 categories = replace(categories,{'WarI'},'War');
-% categories = replace(categories,{"Children's Game"},'Childrens Game');
 
 % etsit‰‰n mit‰ kaikkia kategorioita j‰‰ j‰ljelle, jotta n‰ist‰ saadaan
 % muodostettua oma rivins‰ taulukkoon bin‰‰riarvoja varten.
@@ -38,6 +37,7 @@ listOfCategories(:,37) = [];
 
 % kopioidaan listOfCategories categories-taulukon ensimm‰iseksi riviksi
 % bin‰‰riarvoja varten
+categories(1,2:36) = listOfCategories(1,2:36);
 
 % t‰ytet‰‰n kaikki tyhj‰t sarakkeet samalla arvolla, jotta niit‰ pystyt‰‰n
 % muokkaamaan j‰lkik‰teen. T‰ss‰ k‰ytetty arvoa 'e' (=empty).
@@ -45,7 +45,7 @@ tf = cellfun('isempty',categories);
 categories(tf) = {'e'}; 
 
 % Poistetaan hipsu Children's Gamesta jatkon helpottamiseksi
-categories(1,8) = 'Childrens Games';
+% categories(1,8) = 'Childrens Games';
 
 % asetetaan sarakkeille bin‰‰riarvot
 for i = 2:36
@@ -82,8 +82,8 @@ categorytable1 = cell2table(categorytable1);
 
 categorytable1.Properties.VariableNames = {'cTransportation'};
 categorytable1.cTransportation = num2cell(categorytable1.cTransportation);
-categorytable = removevars(categorytable, 'cTransportation');
+% categorytable = removevars(categorytable, 'cTransportation');
 
-% Kopioi categorytable1:n cTransportation categories-taulun cTransportationin tilalle
+categorytable.cTransportation = categorytable1.cTransportation;
 
 writetable(categorytable,'categorytable.csv');
