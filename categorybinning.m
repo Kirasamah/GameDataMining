@@ -84,6 +84,6 @@ categorytable1.Properties.VariableNames = {'cTransportation'};
 categorytable1.cTransportation = num2cell(categorytable1.cTransportation);
 categorytable = removevars(categorytable, 'cTransportation');
 
-disp('Kopioi categorytable1:n cTransportation categories-taulun cTransportationin tilalle. Paina sitten enter'), pause
+% Kopioi categorytable1:n cTransportation categories-taulun cTransportationin tilalle
 
 writetable(categorytable,'categorytable.csv');
