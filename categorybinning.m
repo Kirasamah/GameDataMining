@@ -25,7 +25,7 @@ categories = replace(categories,{'American West', 'Arabian', 'Medical'},'Others'
 categories = replace(categories,{'Mythology', 'Religious'},'Myths and Religions');
 categories = replace(categories,{'City Building', 'Territory Building'},'Building');
 categories = replace(categories,{'Expansion for Base-game', 'Fan Expansion', 'Game System', 'null'},'');
-categories = replace(categories,{'WarI'},'Adventure');
+categories = replace(categories,{'WarI'},'War');
 % categories = replace(categories,{"Children's Game"},'Childrens Game');
 
 % etsit‰‰n mit‰ kaikkia kategorioita j‰‰ j‰ljelle, jotta n‰ist‰ saadaan
