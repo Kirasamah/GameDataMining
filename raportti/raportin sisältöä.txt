@@ -1,0 +1,50 @@
+Tehtävä:
+	BGG:n datasta etsimme reseptin "menestyvä pelille"
+	
+	määritelmä menestyvälle pelille: suosittu + korkealle arvioitu
+
+Ensimmäinen vaihe:
+	sqlite -> csv + karsinta
+	
+	Viidestä taulusta vain yksi sisälsi kiinostavaa dataa.
+	Kyseisessä taulussa noin 60 saraketta ja 90400 riviä.
+	
+	Joukko ei-kiinnostavia sarakkeita poistettiin esim. linkki kuvatiedostoihin, pelin kuvailu, bgg:n statistiikkaa...
+	Riveistä valittiin mukaan ensimmäisessä vaiheessa vain täydelliset pelit, ei laajennokset tai kokoelmat(yleensä peli + laajennoksia.) Sekä matala minimi määrä arvioita.
+	Tässä vaiheessa jäljellä noin 29000 peliä.
+	
+Toinen vaihe:
+	datan muokkaus ja karsinta
+
+	Datassa vielä merkittävä määrä muokkattavaa, esim pelityypit ovat esitetty mallilla: "Economic,Negotation,Political", "Civilization,Nautical",...
+	Tästä tehtiin binäärisiä muuttujia joissa yhdisteltiin myöskin pieniä luokkia isompiin. Luokkia alussa 86.
+	Sama tehtiin pelimekaaniikoille.	
+
+	Pelillä pitää olla riittävä määrä arvioita:
+	raja 1000 -> 1500 peliä
+		 500  -> 2500
+		 100  -> 7100
+		  50  -> 10400
+		  25  -> 14400
+		  10  -> 21500
+		  
+	rajaksi valittiin 100 arviota, jotta oikeasti keskitymme parhaimpiin peleihin joissa tilastollisesti merkittävä määrä arvioita
+	Tämä 100 arvion raja tukee sitä että pelit ovat myyneet riittävästi jotta ne huomioidaan.
+	
+	Suositeltu pelaajamäärä on datassa esitelty yksittäisille pelaajamäärille annetuilla kategorisilla arvoilla: "null", "notrecommended","recommended","best".
+	Arviot annettu aina 10:een pelaajaan asti. Näitä tutkittiin PCA-menetelmällä jossa havaittiin että 95% kattavuus vaatisi 7 muuttujaa, mutta 75% kattavuus saataisiin jo 3:lla muuttujalla.
+	PCA:n sijasta päädyimme muodostamaan 4 binääristä muuttujaa: yksinpelattava, kaksinpelattava, 3-4 pelaajaa, 5+ pelaajaa, siten että recommended/best antavat true arvon.
+	Tämä malli sopii paremmin tavoitteeseemme.
+	
+	Data muutetaan yleensäkin soveltuvin osin binäärisiksi tai tarvittaessa skaalataan välille 0-1
+	
+	
+Kolmas vaihe:
+	analyysi
+	
+	Muodostetaan sarake: hyvä peli, johon tulee true 100:lle parhaimman arvosanan saaneelle pelille, muille false.
+	
+	Muuttujien etukäteiskarsintaa:
+	   poistetaan ja kirjataan ylös ne joiden edustajat eivät ole mukana 100:ssa parhaimmassa, eli esimerkkinä: "jos yksikään uskonnollinen peli ei ole 100 menestyneimmän pelin joukossa, uskonnollinen teema ei ole suotava mikäli haluaa tehdä menestyvän pelin"
+	   
+	
