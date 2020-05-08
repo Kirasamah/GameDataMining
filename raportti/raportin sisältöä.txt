@@ -38,6 +38,7 @@ Toinen vaihe:
 	
 	Data muutetaan yleensäkin soveltuvin osin binäärisiksi tai tarvittaessa skaalataan välille 0-1
 	
+	Peliaika jaoteltiin myös neljään kategoriaan, 30min tai alle, 31-60min, 61min-2h ja yli 2h. Jakaumasta kuva.
 	
 Kolmas vaihe:
 	analyysi
