@@ -42,3 +42,7 @@ end
 % t‰m‰n j‰lkeen nyt n‰iss‰ indekseiss‰ olevien muuttujien nimet tulisi
 % poimia combinedPopMoreThan100 taulusta ja sen j‰lken vastaavat sarakkeet
 % poistaa sielt‰
+
+%lista bin‰‰rimuuttujista, joita ei esiinny suosituimman sadan pelin
+%joukossa: mChitPullSystem, mPaperAndPencil, mRockPaperScissors, cBook,
+%cChildrensGame, cElectronic, cHumor, cPrintAndPlay !??!?
