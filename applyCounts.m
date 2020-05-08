@@ -10,4 +10,4 @@ writetable(taulu,'suositut.csv'); % talletetaan uuteen tiedostoon
 %taulu2 = readtable('average5up.csv');
 %poistettavat2 = taulu2.usersrated < 2250; % valitaan ne pelit joilla alle 100 arvioita
 %taulu2(poistettavat2,:) = [];           % poistetaan ne
-%writetable(taulu2,'morethan500ratings.csv');
+%writetable (taulu2,'morethan500ratings.csv');

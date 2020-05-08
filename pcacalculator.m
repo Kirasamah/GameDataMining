@@ -4,6 +4,8 @@ function [MappedData,Mapping] = pcacalculator(Data,NumberOfDimensions)
 %   Reduction by Laurens van der Maaten from Delft University of
 %   Technology and Demonstration code provided on the course of Data 
 %   mining in Jyv‰skyl‰ university.
+%   NumberOfDimensions = tavoiteltu ulottuvuuksien m‰‰r‰, jos alle 1 niin 
+%   osuus varianssista.
 %   The PCA is well known tool for Dimensiality Reduction in data mining.
 
     if ~exist('NumberOfDimensions', 'var')
@@ -24,30 +26,30 @@ function [MappedData,Mapping] = pcacalculator(Data,NumberOfDimensions)
 	% Perform eigendecomposition of C
 	CovMatOfData(isnan(CovMatOfData)) = 0;
 	CovMatOfData(isinf(CovMatOfData)) = 0;
-    [EigenValueMatrix, EigenVectors] = eig(CovMatOfData);
+    [EigenVectorMatrix, EigenValues] = eig(CovMatOfData);
     
     % Sort eigenvectors in descending order
-    [EigenVectors, OriginalIndex] = sort(diag(EigenVectors), 'descend');
-    if NumberOfDimensions < 1
-        NumberOfDimensions = find(cumsum(EigenVectors ./ sum(EigenVectors)) >= NumberOfDimensions, 1, 'first');
+    [EigenValues, OriginalIndex] = sort(diag(EigenValues), 'descend');
+    if NumberOfDimensions < 1   % osuus varianssista
+        NumberOfDimensions = find(cumsum(EigenValues ./ sum(EigenValues)) >= NumberOfDimensions, 1, 'first');
         disp(['Embedding into ' num2str(NumberOfDimensions) ' dimensions.']);
     end
-    if NumberOfDimensions > size(EigenValueMatrix, 2)
-        NumberOfDimensions = size(EigenValueMatrix, 2);
+    if NumberOfDimensions > size(EigenVectorMatrix, 2)
+        NumberOfDimensions = size(EigenVectorMatrix, 2);
         warning(['Target dimensionality reduced to ' num2str(NumberOfDimensions) '.']);
     end
-	EigenValueMatrix = EigenValueMatrix(:,OriginalIndex(1:NumberOfDimensions));
-    EigenVectors = EigenVectors(1:NumberOfDimensions);
+	EigenVectorMatrix = EigenVectorMatrix(:,OriginalIndex(1:NumberOfDimensions));
+    EigenValues = EigenValues(1:NumberOfDimensions);
 	
 	% Apply mapping on the data
     if ~(size(Data, 2) < size(Data, 1))
-        EigenValueMatrix = bsxfun(@times, Data' * EigenValueMatrix, (1 ./ sqrt(size(Data, 1) .* EigenVectors))');     % normalize in order to get eigenvectors of covariance matrix
+        EigenVectorMatrix = bsxfun(@times, Data' * EigenVectorMatrix, (1 ./ sqrt(size(Data, 1) .* EigenValues))');     % normalize in order to get eigenvectors of covariance matrix
     end
-    MappedData = Data * EigenValueMatrix;
+    MappedData = Data * EigenVectorMatrix;
     
     % Store information for out-of-sample extension
-    Mapping.EigenValueMatrix = EigenValueMatrix;
-	Mapping.EigenVectors = EigenVectors;
+    Mapping.EigenVectorMatrix = EigenVectorMatrix;
+	Mapping.EigenValues = EigenValues;
     
 
 end
