@@ -30,12 +30,13 @@ I2 = find(C3==0);
 %n‰ihin indekseihin kun lis‰t‰‰n kuhunkin 13, saadaan indeksi jolla
 %sijaitsee taulukossa, joka sis‰lt‰‰ kaiken datan
 for i = 1:8
-     I2(i,1) = I2(i,1) + 13;
+     I2(1,i) = I2(1,i) + 13;
 end
+
+% t‰m‰n j‰lkeen nyt n‰iss‰ indekseiss‰ olevien muuttujien nimet tulisi
+% poimia combinedPopMoreThan100 taulusta ja sen j‰lken vastaavat sarakkeet
+% poistaa sielt‰
 
 %lista bin‰‰rimuuttujista, joita ei esiinny suosituimman sadan pelin
 %joukossa: mChitPullSystem, mPaperAndPencil, mRockPaperScissors, cBook,
-%cChildrensGame, cElectronic, cHumor, cPrintAndPlay
-
-% poistetaan I2 - indekseiss‰ olevat sarakkeet taulusta:
-tablescombined1105(:,I2) = [];
+%cChildrensGame, cElectronic, cHumor, cPrintAndPlay !??!?
