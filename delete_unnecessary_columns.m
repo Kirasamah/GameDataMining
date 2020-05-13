@@ -6,7 +6,7 @@ suos_cell = tablescombined1105{:,13};
 %etsit‰‰n suosittujen pelien indeksit
 I = find(suos_cell==1);
 % muutetaan cell arrayksi table
-C = table2cell(combinedPop100TimePlayers);
+C = table2cell(tablescombined1105);
 % otetaan erilliseen taulukkoon vain bin‰‰riarvot
 C1 = cell2mat(C(:,13:95));
 %tehd‰‰n tyhj‰ aputaulukko
